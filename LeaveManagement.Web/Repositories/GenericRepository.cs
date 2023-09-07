@@ -22,7 +22,7 @@ namespace LeaveManagement.Web.Repositories
             return entity;
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FindAsync(id);
             _context.Set<T>().Remove(entity);
@@ -40,7 +40,7 @@ namespace LeaveManagement.Web.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetAsync(int id)
+        public async Task<T> GetAsync(int? id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
