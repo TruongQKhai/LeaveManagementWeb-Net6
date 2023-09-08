@@ -1,8 +1,10 @@
-using LeaveManagement.Web.Areas.Configurations;
+using LeaveManagement.Web.Configurations;
 using LeaveManagement.Web.Contracts;
 using LeaveManagement.Web.Data;
 using LeaveManagement.Web.Repositories;
+using LeaveManagement.Web.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace LeaveManagement.Web
@@ -24,6 +26,7 @@ namespace LeaveManagement.Web
 
             builder.Services.AddAutoMapper(typeof(MapperConfig));
 
+            builder.Services.AddTransient<IEmailSender>(s => new EmailSender("localhost", 25, "no-reply@leavemanagement.com"));
             // inject GenericRepository
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
